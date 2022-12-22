@@ -1,0 +1,26 @@
+{
+  "acesso": [
+    {
+      "id": 1,
+      "email": "mauricio@email.com",
+      "senha": "123"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "email": "mauricio@email.com",
+      "nome": "Mauricio",
+      "sobrenome": "Maran",
+      "telefone": "16 99111-1111",
+      "endereco": {
+        "logradouro": "rua",
+        "bairro": "teste",
+        "numero": "123",
+        "cidade": "teste",
+        "cep": "14140-000"
+      }
+    }
+   
+  ]
+}

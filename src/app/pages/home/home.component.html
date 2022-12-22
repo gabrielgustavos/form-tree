@@ -1,0 +1,43 @@
+<div class="page-container">
+  <div class="left-column">
+    <img class="left-img" src="assets/bg-img.png" alt="" />
+    <footer class="footer-container">
+      <h1 class="footer-title">Challenge Project 2022</h1>
+      <br />
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit adipisicing
+        elit.
+      </p>
+    </footer>
+  </div>
+  <div class="right-column">
+    <h1 class="tree-title">Tree Inova</h1>
+    <form [formGroup]="form" class="form-home">
+      <label>* e-mail</label>
+      <input
+        formControlName="email"
+        name="email"
+        placeholder="Seu e-mail"
+        type="text"
+      />
+      <label>* senha</label>
+      <input
+        formControlName="senha"
+        type="text"
+        name="senha"
+        placeholder="Sua senha"
+      />
+      <div
+        *ngIf="!form.controls['email'].valid && form.controls['email']?.touched"
+      >
+        <p class="error">E-mail inválido</p>
+      </div>
+
+      <a class="forgot-password" href="#">Esqueceu sua senha?</a>
+
+      <button (click)="onSubmit()" class="login-btn" type="submit">
+          entrar
+      </button>
+    </form>
+  </div>
+</div>

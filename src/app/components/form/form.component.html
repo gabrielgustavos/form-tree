@@ -1,0 +1,175 @@
+<form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()" class="example-form" autocomplete="off"  
+  type="submit">
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input required matInput formControlName="nome" name="nome" />
+          <div *ngIf="cadastroForm.value.nome.errors?.['required']">
+
+          </div>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field appearance="fill">
+          <mat-label>Sobrenome</mat-label>
+          <input required formControlName="sobrenome" name="sobrenome" matInput />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+
+          <input
+            matInput
+            type="email"
+            email
+            #email
+            placeholder="email@email.com.br"
+            formControlName="email"
+            name="email"
+            required
+          />
+          <div>
+            
+          </div>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="cadastroForm.value.email">Digite um e-mail válido</mat-error>
+
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Telefone</mat-label>
+
+          <input
+            matInput
+            mask="(00) 00000-0000"
+            formControlName="telefone"
+            name="telefone"
+            required
+          />
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <td>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Digite sua senha</mat-label>
+            <input
+              formControlName="senha"
+              name="senha"
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Confirme sua senha</mat-label>
+            <input required matInput [type]="hide ? 'password' : 'text'" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$" />
+            <button
+            
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" formGroupName="endereco">
+            <mat-label>CEP</mat-label>
+            <input formControlName="cep" required matInput mask="00000-000" />
+            <mat-icon matSuffix>location_on</mat-icon>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <table formGroupName="endereco" class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Endereço</mat-label>
+            <input required
+              matInput
+              formControlName="logradouro"
+              placeholder="Ex. Rua São josé"
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Bairro</mat-label>
+            <input required matInput formControlName="bairro"  />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Número</mat-label>
+            <input formControlName="numero" required matInput />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </td>
+
+  <table  formGroupName="endereco" class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Cidade</mat-label>
+          <input required
+            matInput
+            formControlName="cidade"
+  
+            placeholder="Ex. São Paulo"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Estado</mat-label>
+          <input required
+            matInput
+            formControlName="estado"
+           
+            placeholder="Ex. São Paulo"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <div class="footer-btns">
+    <button type="submit" mat-raised-button color="primary">
+      <mat-icon>save</mat-icon> Salvar
+    </button>
+    <button (click)="closeDialog()" mat-raised-button color="warn">
+      <mat-icon>close</mat-icon>Cancelar
+    </button>
+  </div>
+</form>
