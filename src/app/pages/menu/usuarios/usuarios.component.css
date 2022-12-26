@@ -1,0 +1,21 @@
+.header-container {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+.table-container {
+  border: 1.5px solid rgb(135, 106, 106);
+}

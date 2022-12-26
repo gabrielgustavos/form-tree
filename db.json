@@ -20,7 +20,52 @@
         "cidade": "teste",
         "cep": "14140-000"
       }
+    },
+    {
+      "id": 2,
+      "email": "mauricio@email.com",
+      "nome": "Mauricio",
+      "sobrenome": "Maran",
+      "telefone": "16 99111-1111",
+      "endereco": {
+        "logradouro": "rua",
+        "bairro": "teste",
+        "numero": "123",
+        "cidade": "teste",
+        "cep": "14140-000"
+      }
+    },
+    {
+      "email": "",
+      "nome": "gabs",
+      "sobrenome": "gabs",
+      "senha": "",
+      "telefone": "",
+      "endereco": {
+        "logradouro": "",
+        "bairro": "",
+        "cidade": "",
+        "estado": "",
+        "numero": "",
+        "cep": ""
+      },
+      "id": 3
+    },
+    {
+      "email": "gabs@hotmail.com",
+      "nome": "gabs",
+      "sobrenome": "gabs",
+      "senha": "123",
+      "telefone": "16999999999",
+      "endereco": {
+        "logradouro": "Rua Capitão Nilo José Alves",
+        "bairro": "Planalto Verde",
+        "cidade": "Ribeirão Preto",
+        "estado": "SP",
+        "numero": "12312",
+        "cep": "14056-612"
+      },
+      "id": 4
     }
-   
   ]
 }

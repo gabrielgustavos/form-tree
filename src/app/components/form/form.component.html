@@ -104,7 +104,7 @@
         <td>
           <mat-form-field appearance="fill" formGroupName="endereco">
             <mat-label>CEP</mat-label>
-            <input formControlName="cep" required matInput mask="00000-000" />
+            <input formControlName="cep" required matInput mask="00000-000" (blur)="pesquisaCEP($event)" />
             <mat-icon matSuffix>location_on</mat-icon>
           </mat-form-field>
         </td>

@@ -14,17 +14,21 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { FormComponent } from './components/form/form.component';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  NgxMaskDirective,
-  NgxMaskPipe,
-  provideNgxMask,
-  IConfig,
-} from 'ngx-mask';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { CdkTableModule } from '@angular/cdk/table';
+import { UsuariosComponent } from './pages/menu/usuarios/usuarios.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, HomeComponent, FormComponent],
+  declarations: [
+    AppComponent,
+    MenuComponent,
+    HomeComponent,
+    FormComponent,
+    UsuariosComponent,
+    
+  ],
   imports: [
     routing,
     BrowserModule,
@@ -40,6 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
     NgxMaskPipe,
     MatFormFieldModule,
     MatSelectModule,
+    CdkTableModule,
   ],
   exports: [RouterModule],
   providers: [provideNgxMask()],
