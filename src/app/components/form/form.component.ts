@@ -1,38 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
-import { map } from 'rxjs';
+import { Endereco } from 'src/app/interface';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   hide = true;
   cadastroForm: FormGroup;
+  loading = false;
 
   constructor(
     public dialog: MatDialog,
     private apiService: ApiService,
-    private http: HttpClient
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+    @Inject(ApiService) private cepService: ApiService
   ) {
-    this.cadastroForm = new FormGroup({
-      email: new FormControl('', Validators.email),
-      // turn nome into required
-      nome: new FormControl(''),
-      sobrenome: new FormControl(''),
-      senha: new FormControl(''),
-      telefone: new FormControl(''),
-      endereco: new FormGroup({
-        logradouro: new FormControl(''),
-        bairro: new FormControl(''),
-        cidade: new FormControl(''),
-        estado: new FormControl(''),
-        numero: new FormControl(''),
-        cep: new FormControl(''),
+    this.cadastroForm = this.formBuilder.group({
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
+      telefone: ['', Validators.required],
+      endereco: this.formBuilder.group({
+        logradouro: ['', Validators.required],
+        numero: ['', Validators.required],
+        complemento: [''],
+        bairro: ['', Validators.required],
+        localidade: ['', Validators.required],
+        uf: ['', Validators.required],
+        cep: ['', Validators.required],
       }),
     });
   }
@@ -41,34 +44,54 @@ export class FormComponent {
     this.dialog.closeAll();
   }
 
+  ngOnInit(): void {}
+
   onSubmit() {
-    if (this.cadastroForm.valid) {
-      this.apiService.postUser(this.cadastroForm.value).subscribe((res) => {
-        this.closeDialog();
-      });
+    if (this.formIsValid()) {
+      this.apiService.postUser({ ...this.cadastroForm.value }).subscribe(
+        (res) => {
+          this.closeDialog();
+          
+        },
+        (error) => {
+          this.showErrorMessage();
+        }
+      );
     } else {
-      alert('Preencha os campos corretamente');
+      this.showErrorMessage();
     }
   }
 
-  pesquisaCEP(event: any) {
-    let cep = (event.target as HTMLInputElement).value;
-    let apiURL = `https://viacep.com.br/ws/${cep}/json/`;
-    this.http
-      .get(apiURL)
-      .pipe(map((dados) => dados))
-      .subscribe((dados) => this.populaDadosForm(dados));
+  formIsValid() {
+    return this.cadastroForm.valid;
   }
 
-  populaDadosForm(dados: any) {
-    this.cadastroForm.patchValue({
-      endereco: {
-        logradouro: dados.logradouro,
-        bairro: dados.bairro,
-        cidade: dados.localidade,
-        estado: dados.uf,
-        cep: dados.cep,
+  showErrorMessage() {
+    alert('Preencha todos os campos corretamente!');
+  }
+
+  pesquisaCEP(event: any) {
+    this.loading = true;
+    let cep = (event.target as HTMLInputElement).value;
+    this.cepService.pesquisaCEP(cep).subscribe(
+      (dados: any) => {
+        this.loading = false;
+        this.populaDadosForm(dados);
       },
+      (error) => {
+        this.loading = false;
+        alert(`Digite o cep corretamente!`);
+      }
+    );
+  }
+
+  applyEnderecoValues(endereco: Endereco) {
+    this.cadastroForm.patchValue({
+      endereco: { ...endereco },
     });
+  }
+
+  populaDadosForm(endereco: Endereco) {
+    this.applyEnderecoValues(endereco);
   }
 }

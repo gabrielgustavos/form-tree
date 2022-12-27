@@ -1,40 +1,44 @@
 <header class="header-container">
-  <button mat-raised-button color="primary" (click)="openDialog()">Criar usuário</button>
+  <button mat-raised-button color="primary" (click)="openDialog()">
+    Criar usuário
+  </button>
 </header>
 
-
 <table class="table-container" cdk-table [dataSource]="datas">
-
-  <ng-container cdkColumnDef="id">
-    <th cdk-header-cell *cdkHeaderCellDef> ID </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.id}} </td>
+  <ng-container cdkColumnDef="nome">
+    <th cdk-header-cell *cdkHeaderCellDef>Nome</th>
+    <td cdk-cell *cdkCellDef="let element">
+      {{ element.nome }} {{ element.sobrenome }}
+    </td>
   </ng-container>
 
   <ng-container cdkColumnDef="email">
-    <th cdk-header-cell *cdkHeaderCellDef>Email </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.email}} </td>
-  </ng-container>
-
-  <ng-container cdkColumnDef="nome">
-    <th cdk-header-cell *cdkHeaderCellDef> Nome </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.nome}} </td>  
-  </ng-container>
-
-  <ng-container cdkColumnDef="sobrenome">
-    <th cdk-header-cell *cdkHeaderCellDef> Sobrenome </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.sobrenome}} </td>  
+    <th cdk-header-cell *cdkHeaderCellDef>Email</th>
+    <td cdk-cell *cdkCellDef="let element">{{ element.email }}</td>
   </ng-container>
 
   <ng-container cdkColumnDef="telefone">
-    <th cdk-header-cell *cdkHeaderCellDef> Telefone </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.telefone}} </td>
+    <th cdk-header-cell *cdkHeaderCellDef>Telefone</th>
+    <td cdk-cell *cdkCellDef="let element">{{ element.telefone }}</td>
   </ng-container>
 
   <ng-container cdkColumnDef="endereco">
-    <th cdk-header-cell *cdkHeaderCellDef> CEP </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.endereco.cep}} </td>
+    <th cdk-header-cell *cdkHeaderCellDef>CEP</th>
+    <td cdk-cell *cdkCellDef="let element">{{ element.endereco.cep }}</td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="acoes">
+    <th cdk-header-cell *cdkHeaderCellDef>Ações</th>
+    <td cdk-cell *cdkCellDef="let element">
+      <button mat-icon-button color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="delete(element.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
   </ng-container>
 
   <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
 </table>

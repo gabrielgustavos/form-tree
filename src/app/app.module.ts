@@ -1,8 +1,8 @@
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { forwardRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
@@ -19,6 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CdkTableModule } from '@angular/cdk/table';
 import { UsuariosComponent } from './pages/menu/usuarios/usuarios.component';
+import { InputComponent } from './components/form/input/input.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { UsuariosComponent } from './pages/menu/usuarios/usuarios.component';
     HomeComponent,
     FormComponent,
     UsuariosComponent,
-    
+    InputComponent,
   ],
   imports: [
     routing,
@@ -45,9 +47,17 @@ import { UsuariosComponent } from './pages/menu/usuarios/usuarios.component';
     MatFormFieldModule,
     MatSelectModule,
     CdkTableModule,
+    MatProgressSpinnerModule,
   ],
   exports: [RouterModule],
-  providers: [provideNgxMask()],
+  providers: [
+    provideNgxMask(),
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
