@@ -1,0 +1,35 @@
+@import '/src/assets/scss/variables.scss';
+@import '/src/assets/scss/mixins.scss';
+
+.header-container {
+  @include start;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+.header-container, table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+.modal {
+  @include fullSize;
+  display: block; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  overflow: auto; 
+  background-color: $black;
+}
+
+.modal-content {
+  background-color: $light-blue;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid $grey;
+  width: 60%;
+}

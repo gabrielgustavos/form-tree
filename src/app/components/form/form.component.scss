@@ -1,0 +1,28 @@
+@import '/src/assets/scss/variables.scss';
+@import '/src/assets/scss/mixins.scss';
+
+form, input {
+  @include fullSize;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 10px;
+  font-size: 1rem;
+  border: none;
+  color: $black;
+}
+
+form {
+  max-width: 500px;
+  padding: 20px 40px;
+  background: $primary-white;
+
+  input {
+    padding: 12px;
+    background-color: $secondary-white;
+    margin-bottom: 30px;
+  }
+}
+
+.footer-btns {
+  @include flexCenterSpaceBetween;
+}

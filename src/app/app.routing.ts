@@ -1,15 +1,16 @@
 import { HomeComponent } from './pages/home/home.component';
-import { MenuComponent } from './pages/menu/menu.component';
+
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 const APP_ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent,
   },
   {
-    path: 'menu',
-    component: MenuComponent,
+    path: 'usuarios',
+    component: UsuariosComponent,
   },
 ];
 

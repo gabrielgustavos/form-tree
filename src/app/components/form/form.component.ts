@@ -1,14 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ApiService } from 'src/app/services/api.service';
-import { Endereco } from 'src/app/interface';
+import { ApiService } from 'app/services/api.service';
+import { Endereco } from 'app/interface/user.interface';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
   hide = true;
@@ -16,9 +14,7 @@ export class FormComponent implements OnInit {
   loading = false;
 
   constructor(
-    public dialog: MatDialog,
     private apiService: ApiService,
-    private http: HttpClient,
     private formBuilder: FormBuilder,
     @Inject(ApiService) private cepService: ApiService
   ) {
@@ -40,34 +36,25 @@ export class FormComponent implements OnInit {
     });
   }
 
-  closeDialog() {
-    this.dialog.closeAll();
-  }
-
   ngOnInit(): void {}
 
   onSubmit() {
     if (this.formIsValid()) {
-      this.apiService.postUser({ ...this.cadastroForm.value }).subscribe(
-        (res) => {
-          this.closeDialog();
-          
-        },
-        (error) => {
-          this.showErrorMessage();
-        }
-      );
+      this.apiService.postUser(this.cadastroForm.value).subscribe(() => {
+        this.cadastroForm.reset();
+        alert('Cadastro realizado com sucesso!');
+      });
     } else {
       this.showErrorMessage();
     }
   }
 
-  formIsValid() {
-    return this.cadastroForm.valid;
-  }
-
   showErrorMessage() {
     alert('Preencha todos os campos corretamente!');
+  }
+
+  formIsValid() {
+    return this.cadastroForm.valid;
   }
 
   pesquisaCEP(event: any) {

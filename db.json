@@ -6,5 +6,23 @@
       "senha": "123"
     }
   ],
-  "usuarios": []
+  "usuarios": [
+    {
+      "nome": "g",
+      "sobrenome": "g",
+      "email": "g",
+      "senha": "123",
+      "telefone": "(12) 13123-1231",
+      "endereco": {
+        "logradouro": "Rua Capitão Nilo José Alves",
+        "numero": "111",
+        "complemento": "",
+        "bairro": "Planalto Verde",
+        "localidade": "Ribeirão Preto",
+        "uf": "SP",
+        "cep": "14056-612"
+      },
+      "id": 4
+    }
+  ]
 }

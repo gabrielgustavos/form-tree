@@ -1,0 +1,24 @@
+@import "/src/assets/scss/mixins.scss";
+@import "/src/assets/scss/variables.scss";
+
+form,
+input {
+  @include fullSize;
+  margin: 0 auto;
+  color: $black;
+  font-size: 1rem;
+  border: none;
+  text-align: center;
+  border-radius: 10px;
+}
+
+form {
+  padding: 20px 40px;
+  background-color: $primary-white;
+}
+
+input {
+  padding: 12px;
+  background-color: $secondary-white;
+  margin-bottom: 30px;
+}

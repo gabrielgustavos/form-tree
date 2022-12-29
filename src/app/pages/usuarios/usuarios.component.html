@@ -1,10 +1,30 @@
 <header class="header-container">
-  <button mat-raised-button color="primary" (click)="openDialog()">
-    Criar usuário
-  </button>
+  <app-button
+    (btnClick)="openModal()"
+    text="Criar Usuário"
+    [isDisabled]="false"
+  ></app-button>
+
+  <div class="search-container">
+    <input
+    matInput
+    
+    type="search"
+    placeholder="Pesquisar"
+    (input)="filtrarUsuarios($event)
+    "
+  />
+
+  </div>
 </header>
 
-<table class="table-container" cdk-table [dataSource]="datas">
+<div class="modal" *ngIf="showModal" (click)="handleClick($event)">
+  <div class="modal-content">
+    <app-form></app-form>
+  </div>
+</div>
+
+<table class="table-container" cdk-table [dataSource]="usuarios">
   <ng-container cdkColumnDef="nome">
     <th cdk-header-cell *cdkHeaderCellDef>Nome</th>
     <td cdk-cell *cdkCellDef="let element">

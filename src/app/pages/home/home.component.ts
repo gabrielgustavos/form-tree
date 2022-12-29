@@ -1,18 +1,18 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'app/services/api.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  form: FormGroup;
+  loginForm: FormGroup;
 
   constructor(private apiService: ApiService, private router: Router) {
-    this.form = new FormGroup({
+    this.loginForm = new FormGroup({
       email: new FormControl(''),
       senha: new FormControl(''),
     });
@@ -21,9 +21,15 @@ export class HomeComponent {
   onSubmit() {
     this.apiService.getData().subscribe((res) => {
       const validateLogin =
-        this.form.value.email === res[0].email &&
-        this.form.value.senha === res[0].senha;
-      if (validateLogin) this.router.navigate(['/menu']);
+        this.loginForm.value.email === res[0].email &&
+        this.loginForm.value.senha === res[0].senha;
+      if (validateLogin) {
+        this.router.navigate(['/usuarios']);
+      } else {
+        alert('Usuário inválido!');
+      }
     });
   }
+
+ 
 }

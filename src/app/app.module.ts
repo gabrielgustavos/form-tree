@@ -6,7 +6,6 @@ import { forwardRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { MenuComponent } from './pages/menu/menu.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,18 +17,19 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CdkTableModule } from '@angular/cdk/table';
-import { UsuariosComponent } from './pages/menu/usuarios/usuarios.component';
 import { InputComponent } from './components/form/input/input.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
     HomeComponent,
-    FormComponent,
     UsuariosComponent,
+    FormComponent,
     InputComponent,
+    ButtonComponent,
   ],
   imports: [
     routing,
