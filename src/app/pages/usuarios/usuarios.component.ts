@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'app/interface/user.interface';
 import { ApiService } from 'app/services/api.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'app/services/auth.service';
+import { UserFilterService } from 'app/services/user-filter.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -10,10 +13,14 @@ import { ApiService } from 'app/services/api.service';
 export class UsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
   showModal: boolean = false;
-  editModal: boolean = false;
-  selectedEdit: Usuario[] = [];
   usuariosOriginal: Usuario[] = [];
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private authService: AuthService,
+    private userFilterService: UserFilterService
+  ) {}
+
   openModal() {
     this.showModal = true;
   }
@@ -32,7 +39,15 @@ export class UsuariosComponent implements OnInit {
     this.apiService.getUsers().subscribe((data: any) => {
       this.usuariosOriginal = data;
       this.usuarios = data;
+      this.authService.generateToken();
     });
+  }
+
+  logout() {
+    if (localStorage.getItem('token')) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/']);
+    }
   }
 
   displayedColumns: string[] = [
@@ -51,37 +66,11 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  private filtrar(valor: string, usuario: Usuario): boolean {
-    return (
-      usuario.nome.toLowerCase().includes(valor.toLowerCase()) ||
-      usuario.email.toLowerCase().includes(valor.toLowerCase()) ||
-      usuario.telefone.toLowerCase().includes(valor.toLowerCase()) ||
-      usuario.endereco.cep.toLowerCase().includes(valor.toLowerCase())
-    );
-  }
-
-  filtrarUsuarios(event: Event): void {
+  filterUsers(event: Event): void {
     const valor = (event.target as HTMLInputElement).value;
-    if (!valor) {
-      this.usuarios = this.usuariosOriginal;
-      return;
-    }
-
-    this.apiService.getUsers().subscribe((data: Usuario[]) => {
-      this.usuarios = data.filter((usuario: Usuario) =>
-        this.filtrar(valor, usuario)
-      );
-    });
-  }
-
-  filtrarUsuariosLocal(valor: string): void {
-    if (!valor) {
-      this.usuarios = this.usuariosOriginal;
-      return;
-    }
-
-    this.usuarios = this.usuariosOriginal.filter((usuario: Usuario) =>
-      this.filtrar(valor, usuario)
+    this.usuarios = this.userFilterService.filterUsers(
+      valor,
+      this.usuariosOriginal
     );
   }
 }

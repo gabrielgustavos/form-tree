@@ -8,21 +8,38 @@
   ],
   "usuarios": [
     {
-      "nome": "g",
-      "sobrenome": "g",
-      "email": "g",
+      "nome": "gabs",
+      "sobrenome": "carlos",
+      "email": "calros@hotmail.com",
       "senha": "123",
-      "telefone": "(12) 13123-1231",
+      "telefone": "(16) 99999-9999",
       "endereco": {
         "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "111",
+        "numero": "100",
         "complemento": "",
         "bairro": "Planalto Verde",
         "localidade": "Ribeirão Preto",
         "uf": "SP",
         "cep": "14056-612"
       },
-      "id": 4
+      "id": 1
+    },
+    {
+      "nome": "zezinho",
+      "sobrenome": "zezinho",
+      "email": "zezinho@hotmail.com",
+      "senha": "123",
+      "telefone": "(16) 19412-9419",
+      "endereco": {
+        "logradouro": "Rua Capitão Nilo José Alves",
+        "numero": "100",
+        "complemento": "",
+        "bairro": "Planalto Verde",
+        "localidade": "Ribeirão Preto",
+        "uf": "SP",
+        "cep": "14056-612"
+      },
+      "id": 2
     }
   ]
 }

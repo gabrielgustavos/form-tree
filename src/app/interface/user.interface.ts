@@ -18,3 +18,9 @@ export interface Usuario {
   endereco: Endereco;
   id: number;
 }
+
+export interface Acesso {
+  id: number;
+  email: string;
+  senha: string;
+}

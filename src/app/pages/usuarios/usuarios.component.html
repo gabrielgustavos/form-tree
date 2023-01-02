@@ -4,6 +4,13 @@
     text="Criar Usuário"
     [isDisabled]="false"
   ></app-button>
+  <app-button
+    text="Logout"
+    [isDisabled]="false"
+    (btnClick)="logout()"
+  >
+
+  </app-button>
 
   <div class="search-container">
     <input
@@ -11,7 +18,7 @@
     
     type="search"
     placeholder="Pesquisar"
-    (input)="filtrarUsuarios($event)
+    (input)="filterUsers($event)
     "
   />
 

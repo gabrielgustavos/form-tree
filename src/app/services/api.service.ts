@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { api } from 'environment/environment';
-import { CEPResponse } from '../interface/api.interface';
+import { CEPResponse } from 'app/interface/api.interface';
 
 @Injectable({
   providedIn: 'root',
