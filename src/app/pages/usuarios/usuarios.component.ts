@@ -4,7 +4,6 @@ import { ApiService } from 'app/services/api.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/services/auth.service';
 import { UserFilterService } from 'app/services/user-filter.service';
-
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -14,6 +13,7 @@ export class UsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
   showModal: boolean = false;
   usuariosOriginal: Usuario[] = [];
+  public usuarioEdit: any;
   constructor(
     private apiService: ApiService,
     private router: Router,
@@ -33,6 +33,11 @@ export class UsuariosComponent implements OnInit {
     if ((event.target as HTMLElement).classList.contains('modal')) {
       this.closeModal();
     }
+  }
+
+  createUser() {
+    this.usuarioEdit = null;
+    this.openModal();
   }
 
   ngOnInit(): void {
@@ -72,5 +77,10 @@ export class UsuariosComponent implements OnInit {
       valor,
       this.usuariosOriginal
     );
+  }
+
+  edit(usuario: Usuario) {
+    this.usuarioEdit = usuario;
+    this.openModal();
   }
 }

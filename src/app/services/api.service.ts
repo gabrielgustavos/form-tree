@@ -20,6 +20,10 @@ export class ApiService {
     return this.http.get(`${this.usuarios}`);
   }
 
+  postLogin(data: any): Observable<any> {
+    return this.http.post(`${this.acesso}`, data);
+  }
+
   postUser(data: any): Observable<any> {
     return this.http.post(`${this.usuarios}`, data);
   }

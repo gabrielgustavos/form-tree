@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { CEPResponse } from 'app/interface/api.interface';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from 'app/services/api.service';
-import { Endereco } from 'app/interface/user.interface';
-
+import { UsuariosComponent } from 'app/pages/usuarios/usuarios.component';
+import { Acesso } from 'app/interface/user.interface';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -10,14 +11,18 @@ import { Endereco } from 'app/interface/user.interface';
 })
 export class FormComponent implements OnInit {
   hide = true;
-  cadastroForm: FormGroup;
+  cadastroForm: FormGroup = new FormGroup({});
   loading = false;
 
   constructor(
     private apiService: ApiService,
     private formBuilder: FormBuilder,
-    @Inject(ApiService) private cepService: ApiService
-  ) {
+    private usuariosComponent: UsuariosComponent
+  ) {}
+
+  usuarioEdit = this.usuariosComponent.usuarioEdit;
+
+  ngOnInit(): void {
     this.cadastroForm = this.formBuilder.group({
       nome: ['', Validators.required],
       sobrenome: ['', Validators.required],
@@ -34,19 +39,69 @@ export class FormComponent implements OnInit {
         cep: ['', Validators.required],
       }),
     });
+    if (this.usuarioEdit) {
+      this.cadastroForm.patchValue({
+        nome: this.usuarioEdit.nome,
+        sobrenome: this.usuarioEdit.sobrenome,
+        email: this.usuarioEdit.email,
+        telefone: this.usuarioEdit.telefone,
+        endereco: this.usuarioEdit.endereco,
+      });
+    }
   }
-
-  ngOnInit(): void {}
 
   onSubmit() {
     if (this.formIsValid()) {
-      this.apiService.postUser(this.cadastroForm.value).subscribe(() => {
-        this.cadastroForm.reset();
-        alert('Cadastro realizado com sucesso!');
-      });
+      if (this.usuarioEdit) {
+        this.updateUser();
+        this.getLogin();
+      } else {
+        this.createUser();
+        this.getLogin();
+      }
     } else {
       this.showErrorMessage();
     }
+  }
+
+  createUser() {
+    this.apiService.postUser(this.cadastroForm.value).subscribe(
+      () => {
+        alert('Cadastro realizado com sucesso!');
+        window.location.reload();
+      },
+      (error) => {
+        console.error(error);
+        alert('Ocorreu um erro ao realizar o cadastro');
+      }
+    );
+  }
+
+  updateUser() {
+    this.apiService
+      .updateUser(this.usuarioEdit.id, this.cadastroForm.value)
+      .subscribe(
+        () => {
+          alert('Usuario editado com sucesso!');
+          window.location.reload();
+        },
+        (error) => {
+          console.error(error);
+          alert('Ocorreu um erro ao realizar o cadastro');
+        }
+      );
+  }
+
+  getLogin() {
+    this.apiService
+      .postLogin({
+        id: this.cadastroForm.value.id,
+        email: this.cadastroForm.value.email,
+        senha: this.cadastroForm.value.senha,
+      })
+      .subscribe((data: Acesso) => {
+        console.log(data);
+      });
   }
 
   showErrorMessage() {
@@ -57,28 +112,20 @@ export class FormComponent implements OnInit {
     return this.cadastroForm.valid;
   }
 
-  pesquisaCEP(event: any) {
+  pesquisaCEP(event: FocusEvent) {
     this.loading = true;
-    let cep = (event.target as HTMLInputElement).value;
-    this.cepService.pesquisaCEP(cep).subscribe(
-      (dados: any) => {
+    const cepDigitado: string = (event.target as HTMLInputElement).value;
+    this.apiService.pesquisaCEP(cepDigitado).subscribe(
+      (dados: CEPResponse) => {
         this.loading = false;
-        this.populaDadosForm(dados);
+        this.cadastroForm.patchValue({
+          endereco: { ...dados },
+        });
       },
       (error) => {
         this.loading = false;
         alert(`Digite o cep corretamente!`);
       }
     );
-  }
-
-  applyEnderecoValues(endereco: Endereco) {
-    this.cadastroForm.patchValue({
-      endereco: { ...endereco },
-    });
-  }
-
-  populaDadosForm(endereco: Endereco) {
-    this.applyEnderecoValues(endereco);
   }
 }

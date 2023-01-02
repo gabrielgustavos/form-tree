@@ -26,7 +26,6 @@
     "ngx-mask": "^15.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "yup": "^0.32.11",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
@@ -42,5 +41,17 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "node-sass": "^8.0.0",
     "typescript": "~4.8.2"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielgustavos/form-tree.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrielgustavos/form-tree/issues"
+  },
+  "homepage": "https://github.com/gabrielgustavos/form-tree#readme"
 }

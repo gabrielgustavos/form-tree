@@ -1,6 +1,6 @@
 <header class="header-container">
   <app-button
-    (btnClick)="openModal()"
+    (btnClick)="createUser()"
     text="Criar Usuário"
     [isDisabled]="false"
   ></app-button>
@@ -57,7 +57,7 @@
   <ng-container cdkColumnDef="acoes">
     <th cdk-header-cell *cdkHeaderCellDef>Ações</th>
     <td cdk-cell *cdkCellDef="let element">
-      <button mat-icon-button color="primary">
+      <button mat-icon-button color="primary" (click)="edit(element)">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button color="warn" (click)="delete(element.id)">

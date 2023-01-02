@@ -20,18 +20,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  validateLogin(formValues: { email: string; senha: string }, data: Acesso[]) {
-    return (
-      formValues.email === data[0].email && formValues.senha === data[0].senha
-    );
-  }
-
   onSubmit() {
     this.apiService.getData().subscribe((res) => {
-      if (this.validateLogin(this.loginForm.value, res)) {
+      const data = res as Acesso[];
+      const email = this.loginForm.get('email')?.value;
+      const senha = this.loginForm.get('senha')?.value;
+      const user = data.find((item) => item.email === email);
+      if (user?.senha === senha) {
         this.router.navigate(['/usuarios']);
       } else {
-        alert(`Usuário inválido: ${this.loginForm.value.email}`);
+        alert('Usuário ou senha incorretos');
       }
     });
   }
