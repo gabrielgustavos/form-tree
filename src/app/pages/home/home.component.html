@@ -4,7 +4,7 @@
   </div>
   <div class="right-column">
     <h1 class="tree-title">Tree Inova</h1>
-    <form [formGroup]="loginForm" class="form-home">
+    <form [formGroup]="loginForm" class="form-home" autocomplete="off">
       <label>* e-mail</label>
       <input
         formControlName="email"
@@ -15,7 +15,7 @@
       <label>* senha</label>
       <input
         formControlName="senha"
-        type="text"
+        type="password"
         name="senha"
         placeholder="Sua senha"
       />

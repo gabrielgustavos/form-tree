@@ -4,52 +4,7 @@
       "id": 1,
       "email": "mauricio@email.com",
       "senha": "123"
-    },
-    {
-      "email": "gabs@hotmail.com",
-      "senha": "123456",
-      "id": 2
-    },
-    {
-      "email": "teste@hotmail.com",
-      "senha": "1234",
-      "id": 3
     }
   ],
-  "usuarios": [
-    {
-      "nome": "gabs",
-      "sobrenome": "gabs",
-      "email": "gabs@hotmail.com",
-      "senha": "123456",
-      "telefone": "(16) 99779-1080",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "100",
-        "complemento": "",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 1
-    },
-    {
-      "nome": "teste",
-      "sobrenome": "teste",
-      "email": "teste@hotmail.com",
-      "senha": "1234",
-      "telefone": "(11) 11111-1111",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "100",
-        "complemento": "",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 2
-    }
-  ]
+  "usuarios": []
 }

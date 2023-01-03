@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { api } from 'environment/environment';
 import { CEPResponse } from 'app/interface/api.interface';
+import { Acesso, Usuario } from 'app/interface/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,19 +21,22 @@ export class ApiService {
     return this.http.get(`${this.usuarios}`);
   }
 
-  postLogin(data: any): Observable<any> {
+  postLogin(data: Acesso): Observable<any> {
     return this.http.post(`${this.acesso}`, data);
   }
 
-  postUser(data: any): Observable<any> {
+  postUser(data: Acesso): Observable<any> {
     return this.http.post(`${this.usuarios}`, data);
   }
 
-  deleteUser(id: any): Observable<any> {
-    return this.http.delete(`${this.usuarios}${id}`);
+  deleteUser(id: number | string): Observable<any> {
+    return (
+      this.http.delete(`${this.usuarios}${id}`) &&
+      this.http.delete(`${this.acesso}${id}`)
+    );
   }
 
-  updateUser(id: any, data: any): Observable<any> {
+  updateUser(id: number | string, data: Usuario[]): Observable<any> {
     return this.http.put('http://localhost:3000/usuarios/' + id, data);
   }
 

@@ -10,6 +10,12 @@
   justify-content: flex-start;
 }
 
+@mixin end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 @mixin flexCenterSpaceBetween {
   display: flex;
   align-items: center;

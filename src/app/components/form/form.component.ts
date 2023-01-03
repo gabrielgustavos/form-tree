@@ -40,24 +40,29 @@ export class FormComponent implements OnInit {
       }),
     });
     if (this.usuarioEdit) {
-      this.cadastroForm.patchValue({
-        nome: this.usuarioEdit.nome,
-        sobrenome: this.usuarioEdit.sobrenome,
-        email: this.usuarioEdit.email,
-        telefone: this.usuarioEdit.telefone,
-        endereco: this.usuarioEdit.endereco,
-      });
+      this.cadastroForm.patchValue(this.usuarioEdit);
     }
   }
+  dataLogin = {
+    id: this.cadastroForm.value.id,
+    email: this.cadastroForm.value.email,
+    senha: this.cadastroForm.value.senha,
+  };
 
+  closeModal() {
+    this.usuariosComponent.closeModal();
+  }
+  
   onSubmit() {
     if (this.formIsValid()) {
       if (this.usuarioEdit) {
         this.updateUser();
         this.getLogin();
+        this.closeModal()
       } else {
         this.createUser();
         this.getLogin();
+        this.closeModal()
       }
     } else {
       this.showErrorMessage();
@@ -92,16 +97,11 @@ export class FormComponent implements OnInit {
       );
   }
 
+
   getLogin() {
-    this.apiService
-      .postLogin({
-        id: this.cadastroForm.value.id,
-        email: this.cadastroForm.value.email,
-        senha: this.cadastroForm.value.senha,
-      })
-      .subscribe((data: Acesso) => {
-        console.log(data);
-      });
+    this.apiService.postLogin(this.dataLogin).subscribe((data: Acesso) => {
+      console.log(data);
+    });
   }
 
   showErrorMessage() {

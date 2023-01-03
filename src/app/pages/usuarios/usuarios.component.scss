@@ -1,28 +1,57 @@
-@import '/src/assets/scss/variables.scss';
-@import '/src/assets/scss/mixins.scss';
+@import "/src/assets/scss/variables.scss";
+@import "/src/assets/scss/mixins.scss";
 
 .header-container {
   @include start;
-  gap: 10px;
-  margin-top: 50px;
+  @include fullSize;
+  background-color: rgba(132, 0, 255, 0.492);
+  gap: 50px;
+  padding: 20px 0;
 }
 
-.header-container, table {
+button > .mat-icon {
+  position: relative;
+  top: 5px;
+  margin-right: 10px;
+}
+
+.header-container,
+table {
   width: 100%;
 }
 
+.table-container {
+  background-color: #2c2e2c;
+  color: $primary-white;
+}
+
 th {
-  text-align: left;
+  padding: 10px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  background-color: $secondary-color;
+  color: $black;
+}
+
+th,
+td {
+  text-align: center;
+  border-radius: 10px;
+}
+td {
+  font-size: 1rem;
+  font-weight: 700;
+  border: 1px solid rgb(4, 131, 249);
 }
 
 .modal {
   @include fullSize;
-  display: block; 
-  position: fixed; 
-  z-index: 1; 
+  display: block;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  overflow: auto; 
+  overflow: auto;
   background-color: $black;
 }
 
@@ -32,4 +61,55 @@ th {
   padding: 20px;
   border: 1px solid $grey;
   width: 60%;
+}
+
+.header-container > button {
+  width: 350px;
+  height: 70px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  margin-left: 10px;
+  border: none;
+  border-radius: 10px;
+  color: $primary-white;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+.logout-btn {
+  background-color: $red;
+}
+
+.create-btn {
+  background-color: $secondary-color;
+}
+
+.search-container {
+  @include fullSize;
+  @include end;
+}
+
+.search-input {
+  height: 50px;
+  margin-right: 180px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $primary-white;
+  background-color: $grey;
+  margin-top: 10px;
+}
+
+.search-container > input::placeholder {
+  color: $primary-white;
+  text-align: center;
+}
+
+.search-container > input:focus {
+  outline: none;
 }

@@ -20,7 +20,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { InputComponent } from './components/form/input/input.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
-import { ButtonComponent } from './components/button/button.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -29,11 +30,12 @@ import { ButtonComponent } from './components/button/button.component';
     UsuariosComponent,
     FormComponent,
     InputComponent,
-    ButtonComponent,
+    NotFoundComponent,
   ],
   imports: [
     routing,
     BrowserModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

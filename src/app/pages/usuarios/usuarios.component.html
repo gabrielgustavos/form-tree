@@ -1,27 +1,22 @@
 <header class="header-container">
-  <app-button
-    (btnClick)="createUser()"
-    text="Criar Usuário"
-    [isDisabled]="false"
-  ></app-button>
-  <app-button
-    text="Logout"
-    [isDisabled]="false"
-    (btnClick)="logout()"
-  >
-
-  </app-button>
+  <button (click)="createUser()" class="create-btn">
+    <mat-icon>add</mat-icon>
+    Adicionar usuário
+  </button>
+  <button (click)="logout()" class="logout-btn">
+    <mat-icon>exit_to_app</mat-icon> Sair da conta
+  </button>
+  <button (click)="deleteSelectedUsers()" class="create-btn">Remover selecionados</button>
 
   <div class="search-container">
     <input
-    matInput
-    
-    type="search"
-    placeholder="Pesquisar"
-    (input)="filterUsers($event)
-    "
-  />
-
+    class="search-input"
+      matInput
+      type="search"
+      placeholder="Pesquisar"
+      autocomplete="off"
+      (input)="filterUsers($event)"
+    />
   </div>
 </header>
 
@@ -32,6 +27,14 @@
 </div>
 
 <table class="table-container" cdk-table [dataSource]="usuarios">
+
+  <ng-container cdkColumnDef="selecionado">
+    <th cdk-header-cell *cdkHeaderCellDef>Marcado</th>
+    <td cdk-cell *cdkCellDef="let element">      
+      <mat-checkbox (click)="selectedUsers(element.id)"></mat-checkbox>
+    </td>
+  </ng-container>
+  
   <ng-container cdkColumnDef="nome">
     <th cdk-header-cell *cdkHeaderCellDef>Nome</th>
     <td cdk-cell *cdkCellDef="let element">

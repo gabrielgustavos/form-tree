@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
       email: new FormControl(''),
       senha: new FormControl(''),
     });
+    const token = 'Home'
+    localStorage.setItem('token', token);
   }
 
   onSubmit() {
@@ -28,6 +30,8 @@ export class HomeComponent implements OnInit {
       const user = data.find((item) => item.email === email);
       if (user?.senha === senha) {
         this.router.navigate(['/usuarios']);
+        localStorage.removeItem('token');
+        alert('Entrando...')
       } else {
         alert('Usuário ou senha incorretos');
       }
