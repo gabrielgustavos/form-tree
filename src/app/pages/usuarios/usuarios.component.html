@@ -1,14 +1,16 @@
+
 <header class="header-container">
-  <button (click)="createUser()" class="create-btn">
+  <button (click)="createUser()" class="btn button-gradient add-btn">
     <mat-icon>add</mat-icon>
     Adicionar usuário
   </button>
-  <button (click)="logout()" class="logout-btn">
-    <mat-icon>exit_to_app</mat-icon> Sair da conta
+  <button (click)="logout()" class="btn button-gradient logout-btn">
+    <mat-icon>exit_to_app</mat-icon> Sair 
   </button>
  
 
   <div class="search-container">
+
     <input
       class="search-input"
       matInput
@@ -57,7 +59,7 @@
       <button mat-icon-button color="primary" (click)="edit(element)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button color="warn" (click)="delete(element.id)">
+      <button mat-icon-button color="warn" (click)="delete(element.id, element)">
         <mat-icon>delete</mat-icon>
       </button>
     </td>

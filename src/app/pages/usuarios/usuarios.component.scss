@@ -2,17 +2,35 @@
 @import "/src/assets/scss/mixins.scss";
 
 .header-container {
-  @include start;
   @include fullSize;
-  background-color: rgba(132, 0, 255, 0.492);
+  @include center;
+  background: linear-gradient(-45deg, #83ff75, #5a3a86, #747474);
   gap: 50px;
   padding: 20px 0;
+}
+
+.search-container {
+  @include fullSize;
+  @include end;
+}
+
+.search-input {
+  height: 35px;
+  margin-right: 180px;
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $black;
+  background-color: $primary-white;
+  margin-top: 10px;
 }
 
 button > .mat-icon {
   position: relative;
   top: 5px;
-  margin-right: 10px;
+  margin: 0 auto;
 }
 
 .header-container,
@@ -21,28 +39,55 @@ table {
 }
 
 .table-container {
-  background-color: #2c2e2c;
+  background-color: #1c2536;
   color: $primary-white;
+}
+.table-container td,
+.container th {
+  text-transform: uppercase;
+  padding: 12px;
+  text-align: center;
+}
+
+.table-container tr:nth-child(odd) {
+  background-color: #323c50;
+}
+
+.table-container tr:nth-child(even) {
+  background-color: #2c3446;
+}
+
+.table-container th {
+  background-color: #1f2739;
+}
+
+.table-container td:first-child {
+  color: #fb667a;
+}
+.table-container tr:hover {
+  background-color: #464a52;
+  -webkit-box-shadow: 0 6px 6px -6px #0e1119;
+  -moz-box-shadow: 0 6px 6px -6px #0e1119;
+  box-shadow: 0 6px 6px -6px #0e1119;
+}
+
+.table-container td:hover {
+  background-color: #00ff04;
+  color: #403e10;
+  font-weight: bold;
+  box-shadow: #7f7c21 -1px 1px, #7f7c21 -2px 2px, #7f7c21 -3px 3px,
+    #7f7c21 -4px 4px, #7f7c21 -5px 5px, #7f7c21 -6px 6px;
+  transform: translate3d(2px, -2px, 0);
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: all;
+  transition-timing-function: line;
 }
 
 th {
-  padding: 10px 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-  background-color: $secondary-color;
-  color: $black;
-}
-
-th,
-td {
+  font-size: 1.1rem;
   text-align: center;
-}
-td {
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 10px 0;
-  border: 1px solid $grey;
+  padding: 10px;
 }
 
 .modal {
@@ -56,61 +101,53 @@ td {
   background-color: $black;
 }
 
-.modal-content {
-  background-color: $light-blue;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid $grey;
-  width: 60%;
-}
-
-.header-container > button {
-  width: 350px;
-  height: 70px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-align: center;
-  margin-left: 10px;
-  border: none;
-  border-radius: 10px;
-  color: $primary-white;
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-  }
-}
-
-.logout-btn {
-  background-color: $red;
-}
-
-.create-btn {
-  background-color: $secondary-color;
-}
-
-.search-container {
-  @include fullSize;
-  @include end;
-}
-
-.search-input {
-  height: 50px;
-  margin-right: 180px;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: $primary-white;
-  background-color: $grey;
-  margin-top: 10px;
-}
-
 .search-container > input::placeholder {
-  color: $primary-white;
+  color: $black;
   text-align: center;
 }
 
 .search-container > input:focus {
   outline: none;
+}
+
+.logout-btn {
+  background: linear-gradient(-45deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+.add-btn {
+  background: linear-gradient(-45deg, #00f260, #0575e6);
+}
+
+.btn {
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 6px;
+  background-size: 400% 400%;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  padding: 13px 60px;
+  margin-left: 10px;
+  font-size: 15px;
+  animation: Gradient 10s ease infinite;
+
+  &:hover {
+    background-size: 150% 150%;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

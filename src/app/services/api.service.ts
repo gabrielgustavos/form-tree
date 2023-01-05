@@ -32,13 +32,7 @@ export class ApiService {
   }
 
   updateUser(id: any, data: any): Observable<any> {
-    return (
-      this.http.put(
-        'http://localhost:3000/acesso/' + id,
-        data.email,
-        data.senha
-      ) && this.http.put('http://localhost:3000/usuarios/' + id, data)
-    );
+    return this.http.put(`http://localhost:3000/usuarios/${id}`, data);
   }
 
   updateLogin(id: any, data: any): Observable<any> {
@@ -47,6 +41,10 @@ export class ApiService {
 
   deleteUser(id: any): Observable<any> {
     return this.http.delete(`${this.usuarios}${id}`);
+  }
+
+  deleteLogin(id: any, data: any): Observable<any> {
+    return this.http.delete(`${this.acesso}/${id}`, data);
   }
 
   pesquisaCEP(cep: string): Observable<CEPResponse> {

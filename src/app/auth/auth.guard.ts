@@ -22,13 +22,14 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const token = localStorage.getItem('token');
-    if (token === 'Home' || token === null) {
-      return true;
-    } else if (token === 'true') {
+    if (token === null) {
+      return false;
+    }
+    if (token === 'usuario') {
       this.router.navigate(['/not-found']);
       return false;
     } else {
-      return false;
+      return true;
     }
   }
 }

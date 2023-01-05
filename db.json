@@ -1,46 +1,25 @@
 {
   "acesso": [
     {
-      "email": "work@work.com",
-      "senha": "work",
-      "id": 1
-    },
-    {
-      "email": "debocha@deboche.com",
+      "email": "tree@tree.com",
       "senha": "123",
       "id": 2
     }
   ],
   "usuarios": [
     {
-      "nome": "jorge",
-      "sobrenome": "cleiton",
-      "email": "work@work.com",
-      "senha": "work",
-      "telefone": "(11) 11111-1111",
-      "endereco": {
-        "logradouro": "Rua General Osório",
-        "numero": "100",
-        "bairro": "Centro",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14010-000"
-      },
-      "id": 1
-    },
-    {
-      "nome": "cleitinho",
-      "sobrenome": "ze",
-      "email": "debocha@deboche.com",
+      "nome": "tree",
+      "sobrenome": "inova",
+      "email": "tree@tree.com",
       "senha": "123",
-      "telefone": "(11) 11111-1111",
+      "telefone": "(00) 00000-0000",
       "endereco": {
-        "logradouro": "Rua General Osório",
-        "numero": "100",
-        "bairro": "Centro",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14010-000"
+        "logradouro": "avenida",
+        "numero": "000",
+        "bairro": "bairro",
+        "localidade": "cidade",
+        "uf": "estado",
+        "cep": "00000-000"
       },
       "id": 2
     }

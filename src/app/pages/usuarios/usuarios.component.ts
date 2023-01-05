@@ -31,7 +31,7 @@ export class UsuariosComponent implements OnInit {
     this.apiService.getUsers().subscribe((data: Usuario[]) => {
       this.usuariosOriginal = data;
       this.usuarios = data;
-      localStorage.setItem('token', 'true');
+      localStorage.setItem('token', 'usuario');
     });
   }
 
@@ -59,12 +59,25 @@ export class UsuariosComponent implements OnInit {
     this.openModal();
   }
 
-  delete(id: string) {
+  delete(id: number, data: Usuario) {
     if (confirm('Deseja realmente excluir?')) {
-      this.apiService.deleteUser(id).subscribe(() => {
-        this.ngOnInit();
-      });
+      this.deleteLogin(id, data);
+      this.deleteUsuario(id);
+      alert('Usuário excluído com sucesso!');
+      window.location.reload();
     }
+  }
+
+  deleteLogin(id: number, data: any) {
+    this.apiService.deleteLogin(id, data).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
+  deleteUsuario(id: number) {
+    this.apiService.deleteUser(id).subscribe((data) => {
+      console.log(data);
+    });
   }
 
   filterUsers(event: Event): void {

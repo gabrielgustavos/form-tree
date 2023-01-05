@@ -43,10 +43,6 @@ export class FormComponent implements OnInit {
     }
   }
 
-  closeModal() {
-    this.usuariosComponent.closeModal();
-  }
-
   onSubmit() {
     if (this.formIsValid()) {
       if (this.usuarioEdit) {
@@ -55,12 +51,37 @@ export class FormComponent implements OnInit {
         this.closeModal();
       } else {
         this.createUser();
-        this.getLogin();
+        this.createLogin();
         this.closeModal();
       }
     } else {
       this.showErrorMessage();
     }
+  }
+
+  createUser() {
+    this.apiService.postUser(this.cadastroForm.value).subscribe(
+      () => {
+        alert('Cadastro realizado com sucesso!');
+        window.location.reload();
+      },
+      (error) => {
+        console.error(error);
+        alert('Ocorreu um erro ao realizar o cadastro');
+      }
+    );
+  }
+
+  createLogin() {
+    this.apiService
+      .postLogin({
+        id: this.cadastroForm.value.id,
+        email: this.cadastroForm.value.email,
+        senha: this.cadastroForm.value.senha,
+      })
+      .subscribe((data: Acesso) => {
+        console.log(data);
+      });
   }
 
   updateUser() {
@@ -78,31 +99,6 @@ export class FormComponent implements OnInit {
       );
   }
 
-  createUser() {
-    this.apiService.postUser(this.cadastroForm.value).subscribe(
-      () => {
-        alert('Cadastro realizado com sucesso!');
-        window.location.reload();
-      },
-      (error) => {
-        console.error(error);
-        alert('Ocorreu um erro ao realizar o cadastro');
-      }
-    );
-  }
-
-  getLogin() {
-    this.apiService
-      .postLogin({
-        id: this.cadastroForm.value.id,
-        email: this.cadastroForm.value.email,
-        senha: this.cadastroForm.value.senha,
-      })
-      .subscribe((data: Acesso) => {
-        console.log(data);
-      });
-  }
-
   updateLogin() {
     this.apiService
       .updateLogin(this.usuarioEdit.id, {
@@ -113,14 +109,6 @@ export class FormComponent implements OnInit {
       .subscribe((data: Acesso) => {
         console.log(data);
       });
-  }
-
-  showErrorMessage() {
-    alert('Preencha todos os campos corretamente!');
-  }
-
-  formIsValid() {
-    return this.cadastroForm.valid;
   }
 
   pesquisaCEP(event: FocusEvent) {
@@ -138,5 +126,17 @@ export class FormComponent implements OnInit {
         alert(`Digite o cep corretamente!`);
       }
     );
+  }
+
+  showErrorMessage() {
+    alert('Preencha todos os campos corretamente!');
+  }
+
+  formIsValid() {
+    return this.cadastroForm.valid;
+  }
+
+  closeModal() {
+    this.usuariosComponent.closeModal();
   }
 }
