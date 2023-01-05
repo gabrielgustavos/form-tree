@@ -18,6 +18,7 @@ const APP_ROUTES: Routes = [
   {
     path: 'not-found',
     component: NotFoundComponent,
+
   },
 ];
 

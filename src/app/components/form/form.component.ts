@@ -32,7 +32,6 @@ export class FormComponent implements OnInit {
       endereco: this.formBuilder.group({
         logradouro: ['', Validators.required],
         numero: ['', Validators.required],
-        complemento: [''],
         bairro: ['', Validators.required],
         localidade: ['', Validators.required],
         uf: ['', Validators.required],
@@ -43,43 +42,25 @@ export class FormComponent implements OnInit {
       this.cadastroForm.patchValue(this.usuarioEdit);
     }
   }
-  dataLogin = {
-    id: this.cadastroForm.value.id,
-    email: this.cadastroForm.value.email,
-    senha: this.cadastroForm.value.senha,
-  };
 
   closeModal() {
     this.usuariosComponent.closeModal();
   }
-  
+
   onSubmit() {
     if (this.formIsValid()) {
       if (this.usuarioEdit) {
         this.updateUser();
-        this.getLogin();
-        this.closeModal()
+        this.updateLogin();
+        this.closeModal();
       } else {
         this.createUser();
         this.getLogin();
-        this.closeModal()
+        this.closeModal();
       }
     } else {
       this.showErrorMessage();
     }
-  }
-
-  createUser() {
-    this.apiService.postUser(this.cadastroForm.value).subscribe(
-      () => {
-        alert('Cadastro realizado com sucesso!');
-        window.location.reload();
-      },
-      (error) => {
-        console.error(error);
-        alert('Ocorreu um erro ao realizar o cadastro');
-      }
-    );
   }
 
   updateUser() {
@@ -97,11 +78,41 @@ export class FormComponent implements OnInit {
       );
   }
 
+  createUser() {
+    this.apiService.postUser(this.cadastroForm.value).subscribe(
+      () => {
+        alert('Cadastro realizado com sucesso!');
+        window.location.reload();
+      },
+      (error) => {
+        console.error(error);
+        alert('Ocorreu um erro ao realizar o cadastro');
+      }
+    );
+  }
 
   getLogin() {
-    this.apiService.postLogin(this.dataLogin).subscribe((data: Acesso) => {
-      console.log(data);
-    });
+    this.apiService
+      .postLogin({
+        id: this.cadastroForm.value.id,
+        email: this.cadastroForm.value.email,
+        senha: this.cadastroForm.value.senha,
+      })
+      .subscribe((data: Acesso) => {
+        console.log(data);
+      });
+  }
+
+  updateLogin() {
+    this.apiService
+      .updateLogin(this.usuarioEdit.id, {
+        id: this.cadastroForm.value.id,
+        email: this.cadastroForm.value.email,
+        senha: this.cadastroForm.value.senha,
+      })
+      .subscribe((data: Acesso) => {
+        console.log(data);
+      });
   }
 
   showErrorMessage() {

@@ -6,11 +6,11 @@
   <button (click)="logout()" class="logout-btn">
     <mat-icon>exit_to_app</mat-icon> Sair da conta
   </button>
-  <button (click)="deleteSelectedUsers()" class="create-btn">Remover selecionados</button>
+ 
 
   <div class="search-container">
     <input
-    class="search-input"
+      class="search-input"
       matInput
       type="search"
       placeholder="Pesquisar"
@@ -28,13 +28,7 @@
 
 <table class="table-container" cdk-table [dataSource]="usuarios">
 
-  <ng-container cdkColumnDef="selecionado">
-    <th cdk-header-cell *cdkHeaderCellDef>Marcado</th>
-    <td cdk-cell *cdkCellDef="let element">      
-      <mat-checkbox (click)="selectedUsers(element.id)"></mat-checkbox>
-    </td>
-  </ng-container>
-  
+
   <ng-container cdkColumnDef="nome">
     <th cdk-header-cell *cdkHeaderCellDef>Nome</th>
     <td cdk-cell *cdkCellDef="let element">

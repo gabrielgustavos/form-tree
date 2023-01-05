@@ -6,8 +6,6 @@ import { Usuario } from 'app/interface/user.interface';
 })
 export class UserFilterService {
   filterUsers(valor: string, usuarios: Usuario[]): Usuario[] {
-    console.log(`valor: ${valor}`);
-    console.log(`usuarios: ${usuarios}`);
     if (!valor) {
       return usuarios;
     }

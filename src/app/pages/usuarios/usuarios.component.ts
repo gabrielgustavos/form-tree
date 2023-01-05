@@ -14,7 +14,6 @@ export class UsuariosComponent implements OnInit {
   usuariosOriginal: Usuario[] = [];
   public usuarioEdit: any;
   displayedColumns: string[] = [
-    'selecionado',
     'nome',
     'email',
     'telefone',
@@ -56,7 +55,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   edit(usuario: Usuario) {
-    console.log(this.usuarioEdit);
     this.usuarioEdit = usuario;
     this.openModal();
   }
@@ -80,36 +78,9 @@ export class UsuariosComponent implements OnInit {
   logout() {
     const token = 'Home';
     localStorage.setItem('token', token);
-    if (token === 'Home') {
+    if (token === 'Home' && confirm('Deseja realmente sair?')) {
       alert('Você foi deslogado com sucesso!');
       this.router.navigate(['/']);
-    }
-  }
-
-  usuariosSelecionados: any = [];
-
-  selectedUsers(id: number) {
-    if (this.usuariosSelecionados.includes(id)) {
-      this.usuariosSelecionados.splice(
-        this.usuariosSelecionados.indexOf(id),
-        1
-      );
-    } else {
-      this.usuariosSelecionados.push(id);
-    }
-    console.log(this.usuariosSelecionados);
-  }
-
-  deleteSelectedUsers() {
-    if (confirm('Deseja realmente excluir?')) {
-      this.usuariosSelecionados.forEach((id: number) => {
-        if (this.usuariosSelecionados.includes(id)) {
-          this.apiService.deleteUser(id).subscribe(() => {
-            this.ngOnInit();
-            this.usuariosSelecionados = [];
-          });
-        }
-      });
     }
   }
 }

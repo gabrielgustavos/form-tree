@@ -36,12 +36,13 @@ th {
 th,
 td {
   text-align: center;
-  border-radius: 10px;
 }
 td {
   font-size: 1rem;
   font-weight: 700;
-  border: 1px solid rgb(4, 131, 249);
+  text-transform: uppercase;
+  padding: 10px 0;
+  border: 1px solid $grey;
 }
 
 .modal {

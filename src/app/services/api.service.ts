@@ -3,45 +3,53 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { api } from 'environment/environment';
 import { CEPResponse } from 'app/interface/api.interface';
-import { Acesso, Usuario } from 'app/interface/user.interface';
+import { Acesso } from 'app/interface/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private acesso = api.acesso;
-  private usuarios = api.usuario;
-  constructor(private http: HttpClient) {}
+  private readonly acesso = api.acesso;
+  private readonly usuarios = api.usuario;
+  private readonly cepApi = 'https://viacep.com.br/ws';
+
+  constructor(private readonly http: HttpClient) {}
 
   getData(): Observable<any> {
     return this.http.get(this.acesso);
   }
 
   getUsers(): Observable<any> {
-    return this.http.get(`${this.usuarios}`);
+    return this.http.get(this.usuarios);
   }
 
   postLogin(data: Acesso): Observable<any> {
-    return this.http.post(`${this.acesso}`, data);
+    return this.http.post(this.acesso, data);
   }
 
   postUser(data: Acesso): Observable<any> {
-    return this.http.post(`${this.usuarios}`, data);
+    return this.http.post(this.usuarios, data);
   }
 
-  deleteUser(id: number | string): Observable<any> {
+  updateUser(id: any, data: any): Observable<any> {
     return (
-      this.http.delete(`${this.usuarios}${id}`) &&
-      this.http.delete(`${this.acesso}${id}`)
+      this.http.put(
+        'http://localhost:3000/acesso/' + id,
+        data.email,
+        data.senha
+      ) && this.http.put('http://localhost:3000/usuarios/' + id, data)
     );
   }
 
-  updateUser(id: number | string, data: Usuario[]): Observable<any> {
-    return this.http.put('http://localhost:3000/usuarios/' + id, data);
+  updateLogin(id: any, data: any): Observable<any> {
+    return this.http.put(`${this.acesso}/${id}`, data);
+  }
+
+  deleteUser(id: any): Observable<any> {
+    return this.http.delete(`${this.usuarios}${id}`);
   }
 
   pesquisaCEP(cep: string): Observable<CEPResponse> {
-    const CEP_API = `https://viacep.com.br/ws/${cep}/json/`;
-    return this.http.get<CEPResponse>(CEP_API);
+    return this.http.get<CEPResponse>(`${this.cepApi}/${cep}/json/`);
   }
 }

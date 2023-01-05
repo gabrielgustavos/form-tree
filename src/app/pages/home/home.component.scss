@@ -16,14 +16,14 @@
   }
 
   .left-img {
-    width: 52vw;
+    width: 100%;
     position: relative;
   }
 
   .right-column {
-    flex: 0 0 40rem;
+    flex: 0 0 75rem;
     @include flexCenterColumn;
-    background-color: $secondary-color;
+    background-color: $black;
 
     .form-home {
       @include column;
@@ -41,7 +41,7 @@
       > label {
         text-transform: uppercase;
         text-align: left;
-        color: $black-blue;
+        color: $primary-white;
         font-size: 0.8125rem;
         font-weight: 500;
       }
@@ -52,7 +52,8 @@
       margin: 40px auto;
       width: 60%;
       height: 50px;
-      color: $secondary-color;
+      color: $black;
+      background-color: $secondary-color;
       font-size: 1.1rem;
 
       &:hover {
@@ -62,8 +63,7 @@
     }
 
     .tree-title {
-      color: $primary-white;
-      background-color: $black;
+      color: $secondary-color;
       padding: 0 10px;
     }
   }
