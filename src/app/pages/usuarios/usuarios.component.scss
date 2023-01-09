@@ -12,18 +12,19 @@
 .search-container {
   @include fullSize;
   @include end;
+
 }
 
 .search-input {
   height: 35px;
   margin-right: 180px;
-  border: none;
-  border-radius: 15px;
+  border: 0;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  background: transparent;
   padding: 15px;
   font-size: 1.1rem;
   font-weight: 500;
-  color: $black;
-  background-color: $primary-white;
+  color: $primary-white;
   margin-top: 10px;
 }
 
@@ -77,8 +78,7 @@ table {
   font-weight: bold;
   box-shadow: #7f7c21 -1px 1px, #7f7c21 -2px 2px, #7f7c21 -3px 3px,
     #7f7c21 -4px 4px, #7f7c21 -5px 5px, #7f7c21 -6px 6px;
-  transform: translate3d(2px, -2px, 0);
-  transition-delay: 0s;
+    transition-delay: 0s;
   transition-duration: 0.2s;
   transition-property: all;
   transition-timing-function: line;
@@ -103,7 +103,7 @@ th {
 
 .search-container > input::placeholder {
   color: $black;
-  text-align: center;
+  text-align: left;
 }
 
 .search-container > input:focus {

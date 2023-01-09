@@ -68,7 +68,7 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  deleteLogin(id: number, data: any) {
+  deleteLogin(id: number, data: Usuario) {
     this.apiService.deleteLogin(id, data).subscribe((data) => {
       console.log(data);
     });
