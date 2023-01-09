@@ -19,6 +19,11 @@ export interface Usuario {
   id: number;
 }
 
+export interface Acessos {
+  acesso: Acesso[];
+}
+
+
 export interface Acesso {
   id: number;
   email: string;

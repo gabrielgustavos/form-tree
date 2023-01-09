@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { api } from 'environment/environment';
 import { CEPResponse } from 'app/interface/api.interface';
-import { Acesso } from 'app/interface/user.interface';
+import { Acesso, Usuario } from 'app/interface/user.interface';
+
 
 @Injectable({
   providedIn: 'root',
@@ -15,32 +16,32 @@ export class ApiService {
 
   constructor(private readonly http: HttpClient) {}
 
-  getData(): Observable<any> {
+  getData(): Observable<Object> {
     return this.http.get(this.acesso);
   }
 
-  getUsers(): Observable<any> {
-    return this.http.get(this.usuarios);
+  getUsers(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.usuarios);
   }
 
-  postLogin(data: Acesso): Observable<any> {
-    return this.http.post(this.acesso, data);
+  postLogin(data: Acesso): Observable<Acesso> {
+    return this.http.post<Acesso>(this.acesso, data);
   }
 
-  postUser(data: Acesso): Observable<any> {
-    return this.http.post(this.usuarios, data);
+  postUser(data: Acesso): Observable<Acesso> {
+    return this.http.post<Acesso>(this.usuarios, data);
   }
 
-  updateUser(id: any, data: any): Observable<any> {
-    return this.http.put(`http://localhost:3000/usuarios/${id}`, data);
+  updateUser(id: number, data: Acesso): Observable<Acesso> {
+    return this.http.put<Acesso>(`${this.usuarios}${id}`, data);
   }
 
-  updateLogin(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.acesso}/${id}`, data);
+  updateLogin(id: number, data: Acesso): Observable<Acesso> {
+    return this.http.put<Acesso>(`${this.acesso}/${id}`, data);
   }
 
-  deleteUser(id: any): Observable<any> {
-    return this.http.delete(`${this.usuarios}${id}`);
+  deleteUser(id: number): Observable<Acesso> {
+    return this.http.delete<Acesso>(`${this.usuarios}${id}`);
   }
 
   deleteLogin(id: any, data: any): Observable<any> {

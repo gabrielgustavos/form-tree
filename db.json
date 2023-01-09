@@ -1,11 +1,6 @@
 {
   "acesso": [
     {
-      "email": "teste@teste.com",
-      "senha": "123",
-      "id": 3
-    },
-    {
       "email": "javascript@js.com",
       "senha": "javascript",
       "id": 4
@@ -44,25 +39,14 @@
       "email": "carlos@carlos.com",
       "senha": "999",
       "id": 12
+    },
+    {
+      "email": "ts@ts.com",
+      "senha": "100",
+      "id": 13
     }
   ],
   "usuarios": [
-    {
-      "nome": "teste",
-      "sobrenome": "teste",
-      "email": "teste@teste.com",
-      "senha": "123",
-      "telefone": "(11) 11111-1111",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "100",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 3
-    },
     {
       "nome": "javascript",
       "sobrenome": "javascript",
@@ -190,6 +174,22 @@
         "cep": "14056-612"
       },
       "id": 12
+    },
+    {
+      "nome": "typescript",
+      "sobrenome": "typescript",
+      "email": "ts@ts.com",
+      "senha": "100",
+      "telefone": "(10) 10101-0101",
+      "endereco": {
+        "logradouro": "Rua Capitão Nilo José Alves",
+        "numero": "000",
+        "bairro": "Planalto Verde",
+        "localidade": "Ribeirão Preto",
+        "uf": "SP",
+        "cep": "14056-612"
+      },
+      "id": 13
     }
   ]
 }

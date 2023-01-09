@@ -9,7 +9,6 @@ const APP_ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'usuarios',
@@ -18,9 +17,8 @@ const APP_ROUTES: Routes = [
   {
     path: 'not-found',
     component: NotFoundComponent,
-
   },
 ];
 
-export const routing: ModuleWithProviders<any> =
+export const routing: ModuleWithProviders<Object> =
   RouterModule.forRoot(APP_ROUTES);
