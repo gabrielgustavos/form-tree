@@ -9,6 +9,7 @@ const APP_ROUTES: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'usuarios',

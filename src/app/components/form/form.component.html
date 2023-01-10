@@ -1,12 +1,12 @@
 <form
-  [formGroup]="cadastroForm"
-  (ngSubmit)="onSubmit()"
+  [formGroup]="registerForm"
+  (ngSubmit)="sendData()"
   class="form"
   autocomplete="off"
   type="submit"
 >
   <app-input
-    [formGroup]="cadastroForm"
+    [formGroup]="registerForm"
     formControlName="nome"
     [label]="'Nome'"
     [required]="true"
@@ -14,7 +14,7 @@
     placeholder="Digite seu nome"
   ></app-input>
   <app-input
-    [formGroup]="cadastroForm"
+    [formGroup]="registerForm"
     formControlName="sobrenome"
     [label]="'Sobrenome'"
     [required]="true"
@@ -23,7 +23,7 @@
   ></app-input>
 
   <app-input
-    [formGroup]="cadastroForm"
+    [formGroup]="registerForm"
     formControlName="email"
     [label]="'E-mail'"
     [required]="true"
@@ -32,7 +32,7 @@
   ></app-input>
 
   <app-input
-    [formGroup]="cadastroForm"
+    [formGroup]="registerForm"
     formControlName="telefone"
     [label]="'Telefone'"
     [required]="true"
@@ -42,7 +42,7 @@
   ></app-input>
 
   <app-input
-    [formGroup]="cadastroForm"
+    [formGroup]="registerForm"
     formControlName="senha"
     [label]="'Senha'"
     [required]="true"
@@ -58,7 +58,7 @@
       required
       mask="00000-000"
       placeholder="Ex. 00000-000"
-      (blur)="pesquisaCEP($event)"
+      (blur)="searchZip($event)"
     />
 
     <mat-spinner [diameter]="40" *ngIf="loading"></mat-spinner>

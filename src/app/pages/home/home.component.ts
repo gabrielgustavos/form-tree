@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { ApiService } from 'app/services/api.service';
 import { Acesso } from 'app/interface/user.interface';
 @Component({
@@ -10,16 +10,20 @@ import { Acesso } from 'app/interface/user.interface';
 })
 export class HomeComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
+  token = 'Home';
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      email: new FormControl(''),
-      senha: new FormControl(''),
+    this.loginForm = this.fb.group({
+      email: [''],
+      senha: [''],
     });
-    const token = 'Home'
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', this.token);
   }
 
   onSubmit() {
@@ -31,7 +35,7 @@ export class HomeComponent implements OnInit {
       if (user?.senha === senha) {
         this.router.navigate(['/usuarios']);
         localStorage.removeItem('token');
-        alert('Entrando...')
+        alert('Entrando...');
       } else {
         alert('Usuário ou senha incorretos');
       }

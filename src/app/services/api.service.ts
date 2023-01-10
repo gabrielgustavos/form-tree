@@ -10,9 +10,9 @@ import { Acesso, Usuario } from 'app/interface/user.interface';
   providedIn: 'root',
 })
 export class ApiService {
-  private readonly acesso = api.acesso;
-  private readonly usuarios = api.usuario;
-  private readonly cepApi = 'https://viacep.com.br/ws';
+  private readonly acesso = api.access;
+  private readonly users = api.user;
+  private readonly URL_API_ZIP = 'https://viacep.com.br/ws';
 
   constructor(private readonly http: HttpClient) {}
 
@@ -21,34 +21,34 @@ export class ApiService {
   }
 
   getUsers(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.usuarios);
+    return this.http.get<Usuario[]>(this.users);
   }
 
-  postLogin(data: Acesso): Observable<Acesso> {
-    return this.http.post<Acesso>(this.acesso, data);
+  postLogin(userData: Acesso): Observable<Acesso> {
+    return this.http.post<Acesso>(this.acesso, userData);
   }
 
-  postUser(data: Acesso): Observable<Acesso> {
-    return this.http.post<Acesso>(this.usuarios, data);
+  postUser(userData: Acesso): Observable<Acesso> {
+    return this.http.post<Acesso>(this.users, userData);
   }
 
-  updateUser(id: number, data: Acesso): Observable<Acesso> {
-    return this.http.put<Acesso>(`${this.usuarios}${id}`, data);
+  updateUser(id: number, userData: Acesso): Observable<Acesso> {
+    return this.http.put<Acesso>(`${this.users}${id}`, userData);
   }
 
-  updateLogin(id: number, data: Acesso): Observable<Acesso> {
-    return this.http.put<Acesso>(`${this.acesso}/${id}`, data);
+  updateLogin(id: number, userData: Acesso): Observable<Acesso> {
+    return this.http.put<Acesso>(`${this.acesso}/${id}`, userData);
   }
 
   deleteUser(id: number): Observable<Acesso> {
-    return this.http.delete<Acesso>(`${this.usuarios}${id}`);
+    return this.http.delete<Acesso>(`${this.users}${id}`);
   }
 
-  deleteLogin(id: any, data: any): Observable<any> {
-    return this.http.delete(`${this.acesso}/${id}`, data);
+  deleteLogin(id: any, userData: any): Observable<any> {
+    return this.http.delete(`${this.acesso}/${id}`, userData);
   }
 
-  pesquisaCEP(cep: string): Observable<CEPResponse> {
-    return this.http.get<CEPResponse>(`${this.cepApi}/${cep}/json/`);
+  searchZip(zip: string): Observable<CEPResponse> {
+    return this.http.get<CEPResponse>(`${this.URL_API_ZIP}/${zip}/json/`);
   }
 }

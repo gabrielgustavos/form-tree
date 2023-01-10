@@ -1,6 +1,6 @@
 export const api = {
   production: false,
-  acesso: 'http://localhost:3000/acesso',
-  usuario: 'http://localhost:3000/usuarios/',
-  cep: 'https://viacep.com.br/ws/',
+  access: 'http://localhost:3000/acesso',
+  user: 'http://localhost:3000/usuarios/',
+  zip: 'https://viacep.com.br/ws/',
 };

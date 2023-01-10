@@ -3,47 +3,7 @@
     {
       "email": "javascript@js.com",
       "senha": "javascript",
-      "id": 4
-    },
-    {
-      "email": "material@material.com",
-      "senha": "333",
-      "id": 6
-    },
-    {
-      "email": "loiane@loiane.com",
-      "senha": "444",
-      "id": 7
-    },
-    {
-      "email": "gabriel@gabriel.com",
-      "senha": "555",
-      "id": 8
-    },
-    {
-      "email": "rafael@rafael.com",
-      "senha": "666",
-      "id": 9
-    },
-    {
-      "email": "manoel@manoel.com",
-      "senha": "777",
-      "id": 10
-    },
-    {
-      "email": "joaquim@joaquim",
-      "senha": "888",
-      "id": 11
-    },
-    {
-      "email": "carlos@carlos.com",
-      "senha": "999",
-      "id": 12
-    },
-    {
-      "email": "ts@ts.com",
-      "senha": "100",
-      "id": 13
+      "id": 1
     }
   ],
   "usuarios": [
@@ -54,142 +14,14 @@
       "senha": "javascript",
       "telefone": "(11) 11111-1111",
       "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "110",
-        "bairro": "Planalto Verde",
+        "logradouro": "Rua General Augusto Soares dos Santos",
+        "numero": "200",
+        "bairro": "Parque Industrial Lagoinha",
         "localidade": "Ribeirão Preto",
         "uf": "SP",
-        "cep": "14056-612"
+        "cep": "14095-240"
       },
-      "id": 4
-    },
-    {
-      "nome": "material",
-      "sobrenome": "material",
-      "email": "material@material.com",
-      "senha": "333",
-      "telefone": "(33) 33333-3333",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "333",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 6
-    },
-    {
-      "nome": "loiane",
-      "sobrenome": "loiane",
-      "email": "loiane@loiane.com",
-      "senha": "444",
-      "telefone": "(44) 44444-4444",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "100",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 7
-    },
-    {
-      "nome": "gabriel",
-      "sobrenome": "gabriel",
-      "email": "gabriel@gabriel.com",
-      "senha": "555",
-      "telefone": "(55) 55555-5555",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "555",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 8
-    },
-    {
-      "nome": "rafael",
-      "sobrenome": "rafael",
-      "email": "rafael@rafael.com",
-      "senha": "666",
-      "telefone": "(66) 66666-6666",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "666",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 9
-    },
-    {
-      "nome": "manoel",
-      "sobrenome": "manoel",
-      "email": "manoel@manoel.com",
-      "senha": "777",
-      "telefone": "(77) 77777-7777",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "777",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 10
-    },
-    {
-      "nome": "joaquim",
-      "sobrenome": "joaquim",
-      "email": "joaquim@joaquim",
-      "senha": "888",
-      "telefone": "(88) 88888-8888",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "888",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 11
-    },
-    {
-      "nome": "carlos",
-      "sobrenome": "carlos",
-      "email": "carlos@carlos.com",
-      "senha": "999",
-      "telefone": "(99) 99999-9999",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "999",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 12
-    },
-    {
-      "nome": "typescript",
-      "sobrenome": "typescript",
-      "email": "ts@ts.com",
-      "senha": "100",
-      "telefone": "(10) 10101-0101",
-      "endereco": {
-        "logradouro": "Rua Capitão Nilo José Alves",
-        "numero": "000",
-        "bairro": "Planalto Verde",
-        "localidade": "Ribeirão Preto",
-        "uf": "SP",
-        "cep": "14056-612"
-      },
-      "id": 13
+      "id": 1
     }
   ]
 }

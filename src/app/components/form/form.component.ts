@@ -11,25 +11,25 @@ import { Acesso } from 'app/interface/user.interface';
 })
 export class FormComponent implements OnInit {
   hide = true;
-  cadastroForm: FormGroup = new FormGroup({});
   loading = false;
+  registerForm: FormGroup = new FormGroup({});
 
   constructor(
     private apiService: ApiService,
-    private formBuilder: FormBuilder,
-    private usuariosComponent: UsuariosComponent
+    private usuariosComponent: UsuariosComponent,
+    private fb: FormBuilder
   ) {}
 
   usuarioEdit = this.usuariosComponent.usuarioEdit;
 
   ngOnInit(): void {
-    this.cadastroForm = this.formBuilder.group({
+    this.registerForm = this.fb.group({
       nome: ['', Validators.required],
       sobrenome: ['', Validators.required],
       email: ['', Validators.required],
       senha: ['', Validators.required],
       telefone: ['', Validators.required],
-      endereco: this.formBuilder.group({
+      endereco: this.fb.group({
         logradouro: ['', Validators.required],
         numero: ['', Validators.required],
         bairro: ['', Validators.required],
@@ -39,28 +39,38 @@ export class FormComponent implements OnInit {
       }),
     });
     if (this.usuarioEdit) {
-      this.cadastroForm.patchValue(this.usuarioEdit);
+      this.registerForm.patchValue(this.usuarioEdit);
     }
   }
 
-  onSubmit() {
-    if (this.formIsValid()) {
-      if (this.usuarioEdit) {
-        this.updateUser();
-        this.updateLogin();
-        this.closeModal();
-      } else {
-        this.createUser();
-        this.createLogin();
-        this.closeModal();
-      }
-    } else {
+  loginData = {
+    id: this.registerForm.value.id,
+    email: this.registerForm.value.email,
+    senha: this.registerForm.value.senha,
+  };
+
+  sendData() {
+    if (!this.formIsValid()) {
       this.showErrorMessage();
+      return;
     }
+    this.usuarioEdit ? this.editAccount() : this.createAccount();
+  }
+
+  editAccount() {
+    this.updateUser();
+    this.updateLogin();
+    this.closeModal();
+  }
+
+  createAccount() {
+    this.createUser();
+    this.createLogin();
+    this.closeModal();
   }
 
   createUser() {
-    this.apiService.postUser(this.cadastroForm.value).subscribe(
+    this.apiService.postUser(this.registerForm.value).subscribe(
       () => {
         alert('Cadastro realizado com sucesso!');
         window.location.reload();
@@ -74,19 +84,15 @@ export class FormComponent implements OnInit {
 
   createLogin() {
     this.apiService
-      .postLogin({
-        id: this.cadastroForm.value.id,
-        email: this.cadastroForm.value.email,
-        senha: this.cadastroForm.value.senha,
-      })
+      .postLogin({ ...this.loginData })
       .subscribe((data: Acesso) => {
-        console.log(data);
+        return;
       });
   }
 
   updateUser() {
     this.apiService
-      .updateUser(this.usuarioEdit.id, this.cadastroForm.value)
+      .updateUser(this.usuarioEdit.id, this.registerForm.value)
       .subscribe(
         () => {
           alert('Usuario editado com sucesso!');
@@ -102,23 +108,21 @@ export class FormComponent implements OnInit {
   updateLogin() {
     this.apiService
       .updateLogin(this.usuarioEdit.id, {
-        id: this.cadastroForm.value.id,
-        email: this.cadastroForm.value.email,
-        senha: this.cadastroForm.value.senha,
+        ...this.loginData,
       })
       .subscribe((data: Acesso) => {
-        console.log(data);
+        return;
       });
   }
 
-  pesquisaCEP(event: FocusEvent) {
+  searchZip(event: FocusEvent) {
     this.loading = true;
-    const cepDigitado: string = (event.target as HTMLInputElement).value;
-    this.apiService.pesquisaCEP(cepDigitado).subscribe(
-      (dados: CEPResponse) => {
+    const zipData: string = (event.target as HTMLInputElement).value;
+    this.apiService.searchZip(zipData).subscribe(
+      (data: CEPResponse) => {
         this.loading = false;
-        this.cadastroForm.patchValue({
-          endereco: { ...dados },
+        this.registerForm.patchValue({
+          endereco: { ...data },
         });
       },
       (error) => {
@@ -133,7 +137,7 @@ export class FormComponent implements OnInit {
   }
 
   formIsValid() {
-    return this.cadastroForm.valid;
+    return this.registerForm.valid;
   }
 
   closeModal() {

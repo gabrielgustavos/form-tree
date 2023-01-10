@@ -5,19 +5,19 @@ import { Usuario } from 'app/interface/user.interface';
   providedIn: 'root',
 })
 export class UserFilterService {
-  filterUsers(valor: string, usuarios: Usuario[]): Usuario[] {
-    if (!valor) {
-      return usuarios;
+  filterUsers(value: string, user: Usuario[]): Usuario[] {
+    if (!value) {
+      return user;
     }
-    return usuarios.filter((usuario: Usuario) => this.filtrar(valor, usuario));
+    return user.filter((user: Usuario) => this.filter(value, user));
   }
 
-  private filtrar(valor: string, usuario: Usuario): boolean {
+  private filter(value: string, user: Usuario): boolean {
     return (
-      usuario.nome.toLowerCase().includes(valor.toLowerCase()) ||
-      usuario.email.toLowerCase().includes(valor.toLowerCase()) ||
-      usuario.telefone.toLowerCase().includes(valor.toLowerCase()) ||
-      usuario.endereco.cep.toLowerCase().includes(valor.toLowerCase())
+      user.nome.toLowerCase().includes(value.toLowerCase()) ||
+      user.email.toLowerCase().includes(value.toLowerCase()) ||
+      user.telefone.toLowerCase().includes(value.toLowerCase()) ||
+      user.endereco.cep.toLowerCase().includes(value.toLowerCase())
     );
   }
 }
